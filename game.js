@@ -1,5 +1,5 @@
-var rows  = 24;
 var cols  = 32;
+var rows  = 24;
 var tiles = [];
 var timer = null;
 var speed = 100;
@@ -29,21 +29,20 @@ $(function() {
 
 function play() {
 	pause();
-	timer = setTimeout(function() {
+	timer = setInterval(function() {
 		step();
-		play();
 	}, speed);
 }
 
 function fastForward() {
 	pause();
-	timer = setTimeout(function() {
+	timer = setInterval(function() {
 		step();
-		fastForward();
 	}, speed / 2);
 }
 
 function step() {
+	var empty = true;
 	var size = rows * cols;
 	for (var i = 0; i < size; i++) {
 		var c = i % cols;
@@ -59,6 +58,7 @@ function step() {
 			if (y < 0) y = rows - 1; else if (y == rows) y = 0;
 			if (tiles[y][x].hasClass("alive")) {
 				alive++;
+				empty = false;
 			}
 		}
 		var tile = tiles[r][c];
@@ -70,10 +70,13 @@ function step() {
 	}
 	$(".add").attr("class", "alive");
 	$(".remove").attr("class", "");
+	if (empty) {
+		pause();
+	}
 }
 
 function pause() {
-	clearTimeout(timer);
+	clearInterval(timer);
 }
 
 function refresh() {
