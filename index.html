@@ -3,22 +3,58 @@
 	<head>
 	
 	<meta chaset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
 	<title>Conway's Game of Life</title>
 	
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
 	
 	</head>
 	<body>
 	
 	<div class="container">
-		<div id="game"></div>
-		<div id="controls">
-			<button id="play" title="Play" class="fa fa-play"></button>
-			<button id="fastForward" title="Double speed" class="fa fa-fast-forward"></button>
-			<button id="pause" title="Pause" class="fa fa-pause"></button>
-			<button id="step" title="Step" class="fa fa-plus"></button>
-			<button id="refresh" title="Restart" class="fa fa-undo"></button>
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 id="title">
+					Conway's Game of Life
+				</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="game">
+					<table id="table"></table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="controls">
+					<button id="play"
+						class="fa fa-play"
+						title="Play">
+					</button>
+					<button id="fast"
+						class="fa fa-fast-forward"
+						title="Fast forward">
+					</button>
+					<button id="stop"
+						class="fa fa-pause"
+						title="Stop">
+					</button>
+					<button id="step"
+						class="fa fa-plus"
+						title="Step">
+					</button>
+					<button id="refresh"
+						class="fa fa-undo"
+						title="Refresh">
+					</button>
+				</div>
+			</div>
 		</div>
 	</div>
 	
