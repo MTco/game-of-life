@@ -40,52 +40,16 @@ $(function() {
 	}).trigger("resize");
 });
 
-/**
- * Conway's Game of life
- * Read about it here: http://en.wikipedia.org/wiki/Conway's_Game_of_Life
- * 
- * @author Mattias Erming
- * @class
- */
 function Game(table, w, h) {
-	/**
-	 * The table element where the game will be rendered.
-	 *
-	 * @type {jQuery}
-	 */
 	this.table = table;
-	
-	/**
-	 * The tile column count.
-	 *
-	 * @type {Number}
-	 */
 	this.w = w || 32;
-	
-	/**
-	 * The tile row count.
-	 *
-	 * @type {Number}
-	 */
 	this.h = h || 24;
-	
-	/**
-	 * This is the game board itself. After the board has been created, this
-	 * array will contain all the tiles.
-	 *
-	 * @type {Array}
-	 */
 	this.tiles = [];
 	
 	// Go ahead and create a new game board.
 	this.refresh();
 };
 
-/**
- * Clear the board and generate the new tiles.
- *
- * @public
- */
 Game.prototype.refresh = function() {
 	var table = this.table;
 	var rows = this.h;
@@ -109,12 +73,6 @@ Game.prototype.refresh = function() {
 	}
 };
 
-/**
- * Starts the game timer.
- *
- * @public
- * @param {Number} speed
- */
 Game.prototype.play = function(speed) {
 	speed = speed || 100;
 	var game = this;
@@ -124,12 +82,6 @@ Game.prototype.play = function(speed) {
 	}, speed);
 };
 
-/**
- * Trigger a new generation and iterates all the tiles to determine which tile
- * will live or die.
- *
- * @public
- */
 Game.prototype.step = function() {
 	var size = this.h * this.w;
 	var stop = true;
@@ -177,55 +129,23 @@ Game.prototype.step = function() {
 	}
 };
 
-/**
- * Stop the game timer.
- *
- * @public
- */
 Game.prototype.stop = function() {
 	clearInterval(this.timer);
 };
 
-/**
- * List of tile states.
- *
- * @readonly
- * @enum {Number}
- */
 var TileState = {
 	dead: 0,
 	alive: 1
 };
 
-/**
- * This the representation of a tile, or a "cell", on the game board.
- *
- * @class
- */
 function Tile(td) {
-	/**
-	 * The table cell which represents this tile.
-	 *
-	 * @type {jQuery}
-	 */
 	this.td = td;
-	
-	/**
-	 * The state of the tile.
-	 *
-	 * @type {Number}
-	 */
 	this.state = TileState.dead;
 	
 	// Keep a reference to this tile inside the DOM element.
 	td.data("tile", this);
 };
 
-/**
- * Toggles the state of the tile, between life.. and death. *evil laughter*
- *
- * @public
- */
 Tile.prototype.toggle = function() {
 	if (this.state == TileState.alive) {
 		this.kill();
@@ -234,21 +154,11 @@ Tile.prototype.toggle = function() {
 	}
 };
 
-/**
- * Kill the tile.
- *
- * @public
- */
 Tile.prototype.kill = function() {
 	this.td.removeClass("alive");
 	this.state = TileState.dead;
 };
 
-/**
- * Let the tile live.
- *
- * @public
- */
 Tile.prototype.live = function() {
 	this.td.addClass("alive");
 	this.state = TileState.alive;
